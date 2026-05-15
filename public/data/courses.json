@@ -1,0 +1,1050 @@
+[
+  {
+    "id": 1,
+    "title": "Complete Web Development Bootcamp",
+    "slug": "complete-web-development-bootcamp",
+    "description": "Master HTML, CSS, JavaScript, React, Node.js, and more. This comprehensive course takes you from absolute beginner to professional web developer. You'll build 20+ real-world projects and learn industry best practices used by top tech companies.",
+    "shortDescription": "From beginner to professional — master the full web stack with hands-on projects.",
+    "instructor": "Sarah Chen",
+    "instructorBio": "Senior Full-Stack Engineer with 10+ years at Google and Stripe. Passionate about making web development accessible to everyone.",
+    "price": 29999,
+    "originalPrice": 89999,
+    "imageUrl": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800",
+    "category": "Web Development",
+    "level": "beginner",
+    "duration": "52 hours",
+    "lessonsCount": 385,
+    "studentsCount": 84250,
+    "rating": 4.8,
+    "reviewsCount": 12847,
+    "isFeatured": true,
+    "tags": ["html", "css", "javascript", "react", "nodejs"],
+    "createdAt": "2024-01-15T00:00:00.000Z",
+    "curriculum": [
+      {
+        "id": 1,
+        "title": "Getting Started with HTML",
+        "lessons": [
+          {
+            "id": 1,
+            "title": "What is HTML?",
+            "duration": "8:32",
+            "isPreview": true
+          },
+          {
+            "id": 2,
+            "title": "HTML Tags and Attributes",
+            "duration": "12:18",
+            "isPreview": false
+          },
+          {
+            "id": 3,
+            "title": "Semantic HTML5 Elements",
+            "duration": "15:44",
+            "isPreview": false
+          },
+          {
+            "id": 4,
+            "title": "Forms and Input Types",
+            "duration": "18:21",
+            "isPreview": false
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "CSS Styling & Layout",
+        "lessons": [
+          {
+            "id": 5,
+            "title": "CSS Box Model",
+            "duration": "11:05",
+            "isPreview": true
+          },
+          {
+            "id": 6,
+            "title": "Flexbox Layout",
+            "duration": "22:30",
+            "isPreview": false
+          },
+          {
+            "id": 7,
+            "title": "CSS Grid System",
+            "duration": "19:42",
+            "isPreview": false
+          },
+          {
+            "id": 8,
+            "title": "Responsive Design with Media Queries",
+            "duration": "24:15",
+            "isPreview": false
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "JavaScript Fundamentals",
+        "lessons": [
+          {
+            "id": 9,
+            "title": "Variables and Data Types",
+            "duration": "14:08",
+            "isPreview": true
+          },
+          {
+            "id": 10,
+            "title": "Functions and Closures",
+            "duration": "21:33",
+            "isPreview": false
+          },
+          {
+            "id": 11,
+            "title": "Async/Await and Promises",
+            "duration": "26:47",
+            "isPreview": false
+          },
+          {
+            "id": 12,
+            "title": "DOM Manipulation",
+            "duration": "19:55",
+            "isPreview": false
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "React.js Essentials",
+        "lessons": [
+          {
+            "id": 13,
+            "title": "React Components and Props",
+            "duration": "16:22",
+            "isPreview": true
+          },
+          {
+            "id": 14,
+            "title": "State and useState Hook",
+            "duration": "20:14",
+            "isPreview": false
+          },
+          {
+            "id": 15,
+            "title": "React Router Navigation",
+            "duration": "17:38",
+            "isPreview": false
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Node.js & Express Backend",
+        "lessons": [
+          {
+            "id": 16,
+            "title": "Express Server Setup",
+            "duration": "13:28",
+            "isPreview": true
+          },
+          {
+            "id": 17,
+            "title": "REST API Design",
+            "duration": "22:41",
+            "isPreview": false
+          },
+          {
+            "id": 18,
+            "title": "Database Integration",
+            "duration": "28:15",
+            "isPreview": false
+          }
+        ]
+      }
+    ],
+    "whatYouLearn": [
+      "Build full-stack web applications from scratch",
+      "Create responsive, beautiful user interfaces",
+      "Work with databases and REST APIs",
+      "Deploy applications to the cloud"
+    ],
+    "requirements": [
+      "A computer with internet access",
+      "No prior programming experience needed",
+      "Willingness to learn and practice"
+    ],
+    "reviews": [
+      {
+        "id": 1,
+        "userName": "Alex Johnson",
+        "rating": 5.0,
+        "comment": "This course completely changed my career. I landed my first developer job 3 months after finishing!",
+        "createdAt": "2024-06-15T00:00:00.000Z"
+      },
+      {
+        "id": 2,
+        "userName": "Mei Lin",
+        "rating": 4.5,
+        "comment": "Incredibly well-structured. Sarah explains complex concepts in a way that actually sticks.",
+        "createdAt": "2024-07-10T00:00:00.000Z"
+      },
+      {
+        "id": 3,
+        "userName": "David Okonkwo",
+        "rating": 5.0,
+        "comment": "Best investment I made. 20 real projects in your portfolio is no joke.",
+        "createdAt": "2024-08-20T00:00:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Machine Learning & AI Fundamentals",
+    "slug": "machine-learning-ai-fundamentals",
+    "description": "Dive deep into machine learning algorithms, neural networks, and AI applications. Learn Python, TensorFlow, and scikit-learn through practical examples. Build real ML models from scratch and understand the mathematics behind modern AI.",
+    "shortDescription": "Build real AI models with Python, TensorFlow, and scikit-learn — from theory to production.",
+    "instructor": "Dr. Marcus Rivera",
+    "instructorBio": "PhD in Computer Science from MIT. Former AI researcher at DeepMind with 15+ published papers on machine learning.",
+    "price": 39999,
+    "originalPrice": 129999,
+    "imageUrl": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800",
+    "category": "Data Science",
+    "level": "intermediate",
+    "duration": "68 hours",
+    "lessonsCount": 412,
+    "studentsCount": 42180,
+    "rating": 4.9,
+    "reviewsCount": 8934,
+    "isFeatured": true,
+    "tags": ["python", "machine-learning", "tensorflow", "ai", "data-science"],
+    "createdAt": "2024-02-01T00:00:00.000Z",
+    "curriculum": [
+      {
+        "id": 6,
+        "title": "Introduction to Machine Learning",
+        "lessons": [
+          {
+            "id": 19,
+            "title": "What is Machine Learning?",
+            "duration": "10:15",
+            "isPreview": true
+          },
+          {
+            "id": 20,
+            "title": "Types of ML: Supervised vs Unsupervised",
+            "duration": "18:40",
+            "isPreview": false
+          },
+          {
+            "id": 21,
+            "title": "Setting Up Your Python Environment",
+            "duration": "12:22",
+            "isPreview": false
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Supervised Learning Algorithms",
+        "lessons": [
+          {
+            "id": 22,
+            "title": "Linear Regression Deep Dive",
+            "duration": "24:18",
+            "isPreview": true
+          },
+          {
+            "id": 23,
+            "title": "Decision Trees and Random Forests",
+            "duration": "28:55",
+            "isPreview": false
+          },
+          {
+            "id": 24,
+            "title": "Support Vector Machines",
+            "duration": "22:37",
+            "isPreview": false
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Neural Networks & Deep Learning",
+        "lessons": [
+          {
+            "id": 25,
+            "title": "Introduction to Neural Networks",
+            "duration": "20:14",
+            "isPreview": true
+          },
+          {
+            "id": 26,
+            "title": "Convolutional Neural Networks",
+            "duration": "32:48",
+            "isPreview": false
+          },
+          {
+            "id": 27,
+            "title": "Training and Regularization",
+            "duration": "26:33",
+            "isPreview": false
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Real-World ML Projects",
+        "lessons": [
+          {
+            "id": 28,
+            "title": "Image Classification Project",
+            "duration": "45:20",
+            "isPreview": false
+          },
+          {
+            "id": 29,
+            "title": "Natural Language Processing Project",
+            "duration": "52:15",
+            "isPreview": false
+          }
+        ]
+      }
+    ],
+    "whatYouLearn": [
+      "Understand core ML algorithms and when to use them",
+      "Train and evaluate neural networks with TensorFlow",
+      "Apply ML to real-world datasets",
+      "Build end-to-end machine learning pipelines"
+    ],
+    "requirements": [
+      "Basic Python knowledge",
+      "High school mathematics",
+      "Familiarity with statistics is helpful"
+    ],
+    "reviews": [
+      {
+        "id": 4,
+        "userName": "Fatima Al-Hassan",
+        "rating": 5.0,
+        "comment": "Dr. Rivera makes math fun. I never thought I would say that about gradient descent.",
+        "createdAt": "2024-05-20T00:00:00.000Z"
+      },
+      {
+        "id": 5,
+        "userName": "Carlos Mendez",
+        "rating": 4.5,
+        "comment": "Dense but worth every minute. The projects are industry-standard quality.",
+        "createdAt": "2024-06-25T00:00:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "UI/UX Design Mastery",
+    "slug": "ui-ux-design-mastery",
+    "description": "Transform from a beginner to a professional UX designer. Master Figma, user research, wireframing, prototyping, and design systems. Learn the principles that drive great digital experiences and build a portfolio that gets you hired.",
+    "shortDescription": "Design stunning user experiences with Figma, user research, and modern design systems.",
+    "instructor": "Elena Vasquez",
+    "instructorBio": "Design Director at Airbnb for 7 years. Creator of the award-winning Sunrise Design System used by 40+ products.",
+    "price": 19999,
+    "originalPrice": 69999,
+    "imageUrl": "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800",
+    "category": "Design",
+    "level": "beginner",
+    "duration": "38 hours",
+    "lessonsCount": 248,
+    "studentsCount": 31540,
+    "rating": 4.7,
+    "reviewsCount": 6201,
+    "isFeatured": true,
+    "tags": ["figma", "ux", "design-systems", "prototyping", "user-research"],
+    "createdAt": "2024-01-20T00:00:00.000Z",
+    "curriculum": [
+      {
+        "id": 10,
+        "title": "Design Principles & Theory",
+        "lessons": [
+          {
+            "id": 30,
+            "title": "Visual Hierarchy and Typography",
+            "duration": "14:22",
+            "isPreview": true
+          },
+          {
+            "id": 31,
+            "title": "Color Theory for Designers",
+            "duration": "18:45",
+            "isPreview": false
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "title": "Figma Fundamentals",
+        "lessons": [
+          {
+            "id": 32,
+            "title": "Figma Interface Tour",
+            "duration": "12:08",
+            "isPreview": true
+          },
+          {
+            "id": 33,
+            "title": "Creating Your First Design",
+            "duration": "24:33",
+            "isPreview": false
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "title": "User Research & Testing",
+        "lessons": [
+          {
+            "id": 34,
+            "title": "User Interview Techniques",
+            "duration": "20:15",
+            "isPreview": true
+          },
+          {
+            "id": 35,
+            "title": "Usability Testing Methods",
+            "duration": "22:40",
+            "isPreview": false
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "title": "Building Design Systems",
+        "lessons": []
+      }
+    ],
+    "whatYouLearn": [
+      "Design with Figma from scratch to finished product",
+      "Conduct user research and usability testing",
+      "Build and document a complete design system"
+    ],
+    "requirements": [
+      "No design experience required",
+      "Access to Figma (free plan is fine)"
+    ],
+    "reviews": [
+      {
+        "id": 6,
+        "userName": "Yuki Tanaka",
+        "rating": 5.0,
+        "comment": "Elena is brilliant. This is the design course I wish existed when I started.",
+        "createdAt": "2024-04-15T00:00:00.000Z"
+      },
+      {
+        "id": 7,
+        "userName": "Amir Hosseini",
+        "rating": 4.0,
+        "comment": "Very comprehensive. Would have liked more advanced animation content.",
+        "createdAt": "2024-05-10T00:00:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Advanced React & TypeScript",
+    "slug": "advanced-react-typescript",
+    "description": "Take your React skills to the next level with TypeScript, advanced patterns, state management, and performance optimization. Master hooks, context, Redux Toolkit, React Query, and testing strategies used at scale.",
+    "shortDescription": "Level up with TypeScript, hooks, Redux Toolkit, and enterprise React patterns.",
+    "instructor": "James Park",
+    "instructorBio": "Principal Engineer at Vercel. Core contributor to several popular React libraries with 8M+ weekly downloads.",
+    "price": 34999,
+    "originalPrice": 99999,
+    "imageUrl": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800",
+    "category": "Web Development",
+    "level": "advanced",
+    "duration": "44 hours",
+    "lessonsCount": 298,
+    "studentsCount": 18720,
+    "rating": 4.9,
+    "reviewsCount": 4183,
+    "isFeatured": true,
+    "tags": ["react", "typescript", "redux", "testing", "performance"],
+    "createdAt": "2024-03-01T00:00:00.000Z",
+    "curriculum": [],
+    "whatYouLearn": [
+      "Use TypeScript effectively in large React codebases",
+      "Implement advanced state management patterns",
+      "Write comprehensive tests for React applications"
+    ],
+    "requirements": [
+      "Solid understanding of JavaScript",
+      "Prior experience with React basics"
+    ],
+    "reviews": [
+      {
+        "id": 8,
+        "userName": "Rachel Kim",
+        "rating": 5.0,
+        "comment": "Finally a React course that treats you like an adult. No hand-holding, just real patterns.",
+        "createdAt": "2024-06-01T00:00:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Python for Data Analysis",
+    "slug": "python-data-analysis",
+    "description": "Learn to analyze and visualize data using Python's most powerful libraries. Master Pandas, NumPy, Matplotlib, Seaborn, and Plotly. Work with real datasets from finance, healthcare, and tech industries.",
+    "shortDescription": "Analyze real-world datasets with Pandas, NumPy, and beautiful visualizations.",
+    "instructor": "Priya Kapoor",
+    "instructorBio": "Data Science Lead at Netflix. Former quantitative analyst at Goldman Sachs. Teaches 200K+ students worldwide.",
+    "price": 14999,
+    "originalPrice": 59999,
+    "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800",
+    "category": "Data Science",
+    "level": "intermediate",
+    "duration": "36 hours",
+    "lessonsCount": 224,
+    "studentsCount": 52340,
+    "rating": 4.8,
+    "reviewsCount": 9827,
+    "isFeatured": false,
+    "tags": ["python", "pandas", "numpy", "data-visualization", "analytics"],
+    "createdAt": "2024-02-15T00:00:00.000Z",
+    "curriculum": [],
+    "whatYouLearn": [
+      "Manipulate and clean datasets with Pandas",
+      "Create compelling visualizations with Matplotlib and Seaborn"
+    ],
+    "requirements": [
+      "Basic Python knowledge",
+      "Familiarity with spreadsheets helpful"
+    ],
+    "reviews": [
+      {
+        "id": 9,
+        "userName": "Omar Said",
+        "rating": 4.5,
+        "comment": "Priya makes data analysis feel approachable. The Netflix dataset projects are brilliant.",
+        "createdAt": "2024-07-05T00:00:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "iOS Development with Swift",
+    "slug": "ios-development-swift",
+    "description": "Build professional iOS apps from scratch using Swift and SwiftUI. Learn Apple's Human Interface Guidelines, Core Data, networking, and App Store submission. Graduate with 5 fully functional apps in your portfolio.",
+    "shortDescription": "Build 5 real iOS apps with Swift and SwiftUI — ready for the App Store.",
+    "instructor": "Tom Nakamura",
+    "instructorBio": "iOS Engineer at Apple. Author of 'Modern Swift Development' with 50K+ copies sold.",
+    "price": 34999,
+    "originalPrice": 109999,
+    "imageUrl": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800",
+    "category": "Mobile Development",
+    "level": "beginner",
+    "duration": "56 hours",
+    "lessonsCount": 347,
+    "studentsCount": 23150,
+    "rating": 4.7,
+    "reviewsCount": 5612,
+    "isFeatured": false,
+    "tags": ["swift", "swiftui", "ios", "xcode", "mobile"],
+    "createdAt": "2024-03-10T00:00:00.000Z",
+    "curriculum": [],
+    "whatYouLearn": [],
+    "requirements": [],
+    "reviews": []
+  },
+  {
+    "id": 7,
+    "title": "DevOps & Cloud Engineering",
+    "slug": "devops-cloud-engineering",
+    "description": "Master Docker, Kubernetes, CI/CD pipelines, and AWS cloud services. Learn infrastructure as code with Terraform, monitoring with Prometheus, and GitOps practices used by world-class engineering teams.",
+    "shortDescription": "Master Docker, Kubernetes, and AWS to deploy and scale modern applications.",
+    "instructor": "Alex Torres",
+    "instructorBio": "Cloud Architect at Amazon Web Services. AWS Certified Professional with 12 years in infrastructure engineering.",
+    "price": 49999,
+    "originalPrice": 139999,
+    "imageUrl": "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=800",
+    "category": "DevOps",
+    "level": "intermediate",
+    "duration": "62 hours",
+    "lessonsCount": 389,
+    "studentsCount": 15840,
+    "rating": 4.8,
+    "reviewsCount": 3921,
+    "isFeatured": true,
+    "tags": ["docker", "kubernetes", "aws", "devops", "terraform"],
+    "createdAt": "2024-04-01T00:00:00.000Z",
+    "curriculum": [],
+    "whatYouLearn": [
+      "Deploy containerized applications with Docker and Kubernetes",
+      "Build CI/CD pipelines with GitHub Actions",
+      "Provision infrastructure with Terraform"
+    ],
+    "requirements": [
+      "Basic Linux command line experience",
+      "Understanding of web applications"
+    ],
+    "reviews": [
+      {
+        "id": 10,
+        "userName": "Lena Fischer",
+        "rating": 5.0,
+        "comment": "Alex knows AWS inside out. Saved me weeks of fumbling through documentation.",
+        "createdAt": "2024-08-01T00:00:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Cybersecurity & Ethical Hacking",
+    "slug": "cybersecurity-ethical-hacking",
+    "description": "Learn penetration testing, network security, and ethical hacking techniques. Understand vulnerabilities, exploits, and defensive strategies. Prepare for industry certifications like CEH and OSCP with real lab environments.",
+    "shortDescription": "Learn ethical hacking, penetration testing, and network security from the ground up.",
+    "instructor": "Morgan Blake",
+    "instructorBio": "CISSP-certified security consultant. Former NSA analyst and founder of a leading cybersecurity training institute.",
+    "price": 59999,
+    "originalPrice": 149999,
+    "imageUrl": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800",
+    "category": "Cybersecurity",
+    "level": "intermediate",
+    "duration": "74 hours",
+    "lessonsCount": 456,
+    "studentsCount": 19320,
+    "rating": 4.9,
+    "reviewsCount": 7234,
+    "isFeatured": false,
+    "tags": [
+      "security",
+      "ethical-hacking",
+      "networking",
+      "linux",
+      "penetration-testing"
+    ],
+    "createdAt": "2024-04-15T00:00:00.000Z",
+    "curriculum": [],
+    "whatYouLearn": [],
+    "requirements": [],
+    "reviews": []
+  },
+  {
+    "id": 9,
+    "title": "Android Development with Kotlin",
+    "slug": "android-development-kotlin",
+    "description": "Build modern Android apps using Kotlin and Jetpack Compose. Learn Material Design 3, Room database, Retrofit networking, MVVM architecture, and publish your app on Google Play Store with confidence.",
+    "shortDescription": "Build production-ready Android apps with Kotlin and Jetpack Compose.",
+    "instructor": "Rahul Sharma",
+    "instructorBio": "Android Lead at Flipkart. Google Certified Android Developer with 8 years of mobile development experience.",
+    "price": 2499,
+    "originalPrice": 7999,
+    "imageUrl": "https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?w=800",
+    "category": "Mobile Development",
+    "level": "intermediate",
+    "duration": "48 hours",
+    "lessonsCount": 312,
+    "studentsCount": 27840,
+    "rating": 4.8,
+    "reviewsCount": 5124,
+    "isFeatured": true,
+    "tags": ["kotlin", "android", "jetpack-compose", "mvvm", "google-play"],
+    "createdAt": "2024-05-01T00:00:00.000Z",
+    "curriculum": [
+      {
+        "id": 14,
+        "title": "Kotlin Fundamentals",
+        "lessons": [
+          {
+            "id": 36,
+            "title": "Variables, Functions & Classes in Kotlin",
+            "duration": "16:30",
+            "isPreview": true
+          },
+          {
+            "id": 37,
+            "title": "Coroutines & Async Kotlin",
+            "duration": "22:15",
+            "isPreview": false
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "title": "Jetpack Compose UI",
+        "lessons": [
+          {
+            "id": 38,
+            "title": "Composables and State",
+            "duration": "18:42",
+            "isPreview": true
+          },
+          {
+            "id": 39,
+            "title": "Layouts and Theming",
+            "duration": "21:18",
+            "isPreview": false
+          }
+        ]
+      },
+      {
+        "id": 16,
+        "title": "MVVM & Data Layer",
+        "lessons": [
+          {
+            "id": 40,
+            "title": "ViewModel & LiveData",
+            "duration": "24:05",
+            "isPreview": true
+          }
+        ]
+      },
+      {
+        "id": 17,
+        "title": "Publishing to Google Play",
+        "lessons": [
+          {
+            "id": 41,
+            "title": "App Signing and Release",
+            "duration": "14:30",
+            "isPreview": true
+          }
+        ]
+      }
+    ],
+    "whatYouLearn": [
+      "Build real Android apps with Kotlin and Jetpack Compose",
+      "Implement MVVM architecture in Android apps",
+      "Publish apps to Google Play Store"
+    ],
+    "requirements": [
+      "Basic programming knowledge in any language",
+      "Android smartphone or emulator"
+    ],
+    "reviews": [
+      {
+        "id": 11,
+        "userName": "Kiran Reddy",
+        "rating": 5.0,
+        "comment": "Rahul explains Kotlin beautifully. My first app is live on Play Store, thanks to this course!",
+        "createdAt": "2024-07-20T00:00:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Blockchain & Web3 Development",
+    "slug": "blockchain-web3-development",
+    "description": "Enter the world of blockchain by building decentralised applications on Ethereum. Master Solidity smart contracts, Hardhat, Web3.js, IPFS, and DeFi protocols. Build NFT marketplaces and DeFi dashboards.",
+    "shortDescription": "Build real DApps, NFT platforms, and DeFi tools on Ethereum with Solidity.",
+    "instructor": "Vikram Nair",
+    "instructorBio": "Blockchain architect and ex-Coinbase engineer. Core contributor to multiple open-source DeFi protocols.",
+    "price": 54999,
+    "originalPrice": 149999,
+    "imageUrl": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800",
+    "category": "Web Development",
+    "level": "advanced",
+    "duration": "58 hours",
+    "lessonsCount": 362,
+    "studentsCount": 12450,
+    "rating": 4.7,
+    "reviewsCount": 2876,
+    "isFeatured": true,
+    "tags": ["blockchain", "solidity", "ethereum", "web3", "nft"],
+    "createdAt": "2024-05-15T00:00:00.000Z",
+    "curriculum": [
+      {
+        "id": 18,
+        "title": "Blockchain Basics",
+        "lessons": [
+          {
+            "id": 42,
+            "title": "How Blockchain Works",
+            "duration": "12:44",
+            "isPreview": true
+          }
+        ]
+      },
+      {
+        "id": 19,
+        "title": "Solidity Smart Contracts",
+        "lessons": [
+          {
+            "id": 43,
+            "title": "Writing Your First Smart Contract",
+            "duration": "26:18",
+            "isPreview": true
+          }
+        ]
+      },
+      {
+        "id": 20,
+        "title": "Building DApps with Web3.js",
+        "lessons": [
+          {
+            "id": 44,
+            "title": "Connecting Frontend to Smart Contract",
+            "duration": "28:55",
+            "isPreview": false
+          }
+        ]
+      },
+      {
+        "id": 21,
+        "title": "NFT & DeFi Projects",
+        "lessons": [
+          {
+            "id": 45,
+            "title": "Building an NFT Marketplace",
+            "duration": "52:10",
+            "isPreview": false
+          }
+        ]
+      }
+    ],
+    "whatYouLearn": [
+      "Write and deploy Solidity smart contracts",
+      "Build decentralised applications with Web3.js",
+      "Create and deploy NFT collections"
+    ],
+    "requirements": [
+      "JavaScript proficiency required",
+      "Understanding of basic web development"
+    ],
+    "reviews": [
+      {
+        "id": 12,
+        "userName": "Siddharth Joshi",
+        "rating": 4.5,
+        "comment": "Best blockchain course available in India. Built a full NFT marketplace by the end.",
+        "createdAt": "2024-08-10T00:00:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Full Stack Python with Django",
+    "slug": "full-stack-python-django",
+    "description": "Build powerful web applications end-to-end with Python and Django. Master Django REST Framework, PostgreSQL, Celery, Redis, and deploy to AWS. Covers authentication, payments, and real-time features.",
+    "shortDescription": "Build and deploy full-stack Django applications with REST APIs and PostgreSQL.",
+    "instructor": "Ananya Krishnan",
+    "instructorBio": "Software Engineer at Razorpay. Django core contributor and open-source advocate with 7 years of Python experience.",
+    "price": 29999,
+    "originalPrice": 89999,
+    "imageUrl": "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800",
+    "category": "Web Development",
+    "level": "intermediate",
+    "duration": "54 hours",
+    "lessonsCount": 338,
+    "studentsCount": 31200,
+    "rating": 4.8,
+    "reviewsCount": 6437,
+    "isFeatured": false,
+    "tags": ["python", "django", "rest-api", "postgresql", "celery"],
+    "createdAt": "2024-06-01T00:00:00.000Z",
+    "curriculum": [
+      {
+        "id": 22,
+        "title": "Django Foundations",
+        "lessons": [
+          {
+            "id": 46,
+            "title": "Django Models and Admin",
+            "duration": "20:15",
+            "isPreview": true
+          }
+        ]
+      },
+      {
+        "id": 23,
+        "title": "Django REST Framework",
+        "lessons": [
+          {
+            "id": 47,
+            "title": "Building REST APIs with DRF",
+            "duration": "24:40",
+            "isPreview": true
+          }
+        ]
+      },
+      {
+        "id": 24,
+        "title": "Deployment & DevOps",
+        "lessons": [
+          {
+            "id": 48,
+            "title": "Docker & AWS Deployment",
+            "duration": "32:20",
+            "isPreview": false
+          }
+        ]
+      }
+    ],
+    "whatYouLearn": [
+      "Build REST APIs with Django REST Framework",
+      "Integrate PostgreSQL, Celery, and Redis",
+      "Deploy Django apps to AWS with Docker"
+    ],
+    "requirements": ["Basic Python knowledge", "Understanding of web concepts"],
+    "reviews": [
+      {
+        "id": 13,
+        "userName": "Divya Menon",
+        "rating": 5.0,
+        "comment": "Ananya's teaching style is incredible. My Django APIs are running in production now.",
+        "createdAt": "2024-08-15T00:00:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Cloud Computing with Microsoft Azure",
+    "slug": "cloud-computing-microsoft-azure",
+    "description": "Get hands-on with Microsoft Azure and prepare for AZ-900 and AZ-104 certifications. Learn virtual machines, storage, networking, Azure DevOps, and serverless computing through real-world projects.",
+    "shortDescription": "Master Azure cloud services and earn your AZ-900 and AZ-104 certifications.",
+    "instructor": "Arjun Mehta",
+    "instructorBio": "Microsoft Certified Azure Solutions Architect. Cloud consultant with experience across 50+ enterprise Azure deployments.",
+    "price": 34999,
+    "originalPrice": 99999,
+    "imageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800",
+    "category": "DevOps",
+    "level": "beginner",
+    "duration": "42 hours",
+    "lessonsCount": 268,
+    "studentsCount": 19800,
+    "rating": 4.7,
+    "reviewsCount": 3812,
+    "isFeatured": true,
+    "tags": ["azure", "cloud", "devops", "certification", "microsoft"],
+    "createdAt": "2024-06-15T00:00:00.000Z",
+    "curriculum": [
+      {
+        "id": 25,
+        "title": "Azure Core Services",
+        "lessons": [
+          {
+            "id": 49,
+            "title": "Azure Portal & Resource Groups",
+            "duration": "14:08",
+            "isPreview": true
+          }
+        ]
+      },
+      {
+        "id": 26,
+        "title": "Compute & Networking",
+        "lessons": [
+          {
+            "id": 50,
+            "title": "Virtual Machines & VNets",
+            "duration": "22:35",
+            "isPreview": false
+          }
+        ]
+      },
+      {
+        "id": 27,
+        "title": "AZ-900 Exam Prep",
+        "lessons": [
+          {
+            "id": 51,
+            "title": "AZ-900 Practice Tests",
+            "duration": "18:00",
+            "isPreview": true
+          }
+        ]
+      }
+    ],
+    "whatYouLearn": [
+      "Provision Azure resources using the portal and CLI",
+      "Pass the AZ-900 certification exam",
+      "Design secure cloud architectures on Azure"
+    ],
+    "requirements": [
+      "No cloud experience required",
+      "Basic IT concepts familiarity"
+    ],
+    "reviews": [
+      {
+        "id": 14,
+        "userName": "Mohit Agarwal",
+        "rating": 4.5,
+        "comment": "Cleared AZ-900 on my first attempt after this course. Very practical and exam-focused.",
+        "createdAt": "2024-09-01T00:00:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "title": "React Native Cross-Platform Apps",
+    "slug": "react-native-cross-platform",
+    "description": "Build iOS and Android apps from a single codebase using React Native and Expo. Master navigation, animations, native device features, push notifications, and publish to both app stores.",
+    "shortDescription": "Ship iOS and Android apps with one codebase using React Native and Expo.",
+    "instructor": "Sneha Patel",
+    "instructorBio": "Mobile Engineering Lead at Swiggy. React Native expert who has shipped apps to 10M+ users.",
+    "price": 27999,
+    "originalPrice": 84999,
+    "imageUrl": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800",
+    "category": "Mobile Development",
+    "level": "intermediate",
+    "duration": "46 hours",
+    "lessonsCount": 287,
+    "studentsCount": 22640,
+    "rating": 4.8,
+    "reviewsCount": 4521,
+    "isFeatured": false,
+    "tags": ["react-native", "expo", "ios", "android", "mobile"],
+    "createdAt": "2024-07-01T00:00:00.000Z",
+    "curriculum": [
+      {
+        "id": 28,
+        "title": "React Native Basics",
+        "lessons": [
+          {
+            "id": 52,
+            "title": "Setting Up Expo Project",
+            "duration": "11:22",
+            "isPreview": true
+          }
+        ]
+      },
+      {
+        "id": 29,
+        "title": "Navigation & State",
+        "lessons": [
+          {
+            "id": 53,
+            "title": "React Navigation Deep Dive",
+            "duration": "24:15",
+            "isPreview": true
+          }
+        ]
+      },
+      {
+        "id": 30,
+        "title": "Native Features & Publishing",
+        "lessons": [
+          {
+            "id": 54,
+            "title": "Camera, Location & Notifications",
+            "duration": "28:40",
+            "isPreview": false
+          }
+        ]
+      }
+    ],
+    "whatYouLearn": [
+      "Build cross-platform apps with React Native and Expo",
+      "Implement navigation and state management",
+      "Access native device features and push notifications"
+    ],
+    "requirements": [
+      "Familiarity with React or JavaScript",
+      "Mac (for iOS testing) or PC for Android testing"
+    ],
+    "reviews": [
+      {
+        "id": 15,
+        "userName": "Pooja Singh",
+        "rating": 5.0,
+        "comment": "Sneha explains React Native perfectly. Shipped both iOS and Android from a single codebase!",
+        "createdAt": "2024-09-15T00:00:00.000Z"
+      }
+    ]
+  }
+]
