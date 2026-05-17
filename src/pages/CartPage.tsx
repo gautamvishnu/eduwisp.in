@@ -5,10 +5,42 @@ import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { useCart } from "@/context/CartContext";
 import { formatINR } from "@/lib/currency";
+import { RazorpayService } from "@/lib/razorpayService";
 
 export default function CartPage() {
   const { items, removeItem, total, itemCount } = useCart();
   const [, setLocation] = useLocation();
+
+  const paymentWithRazorPay = async () => {
+    try {
+      const payload = {
+        amount: total,
+        fullName: "Vishnu",
+        mobile: "9654584647",
+        emailId: "gautam.vishnu007@gmail.com",
+        clientRefId: "EduWisp-123456",
+        callbackUrl: "https://eduwisp.in/payment-success",
+        accessMode: "WEB",
+      };
+
+      // Call backend API
+      const response = await RazorpayService.initiateRazorpayGateway(payload);
+
+      console.log(
+        "initiateRazorpayGateway:",
+        response,
+        response?.data?.orderId,
+      );
+
+      if (response.status) {
+        await RazorpayService.pay(response?.data?.orderId, 10);
+      } else {
+        alert("Failed to initiate payment gateway. Please try again.");
+      }
+    } catch (err) {
+      console.error("Error fetching bill details", err);
+    }
+  };
 
   if (itemCount === 0) {
     return (
@@ -17,9 +49,15 @@ export default function CartPage() {
           <ShoppingCart className="w-10 h-10 text-muted-foreground" />
         </div>
         <h2 className="text-2xl font-bold mb-2">Your cart is empty</h2>
-        <p className="text-muted-foreground mb-8">Discover courses and start learning today.</p>
+        <p className="text-muted-foreground mb-8">
+          Discover courses and start learning today.
+        </p>
         <Link href="/courses">
-          <Button size="lg" className="gap-2" data-testid="button-browse-courses-empty-cart">
+          <Button
+            size="lg"
+            className="gap-2"
+            data-testid="button-browse-courses-empty-cart"
+          >
             Browse Courses
             <ArrowRight className="w-4 h-4" />
           </Button>
@@ -31,16 +69,27 @@ export default function CartPage() {
   return (
     <div className="min-h-screen bg-background py-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold mb-8" style={{ fontFamily: "var(--app-font-display, var(--app-font-sans))" }}>
+        <h1
+          className="text-3xl font-bold mb-8"
+          style={{
+            fontFamily: "var(--app-font-display, var(--app-font-sans))",
+          }}
+        >
           Shopping Cart
-          <Badge variant="secondary" className="ml-3 text-base">{itemCount} {itemCount === 1 ? "item" : "items"}</Badge>
+          <Badge variant="secondary" className="ml-3 text-base">
+            {itemCount} {itemCount === 1 ? "item" : "items"}
+          </Badge>
         </h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Items */}
           <div className="lg:col-span-2 space-y-4">
             {items.map((item) => (
-              <div key={item.courseId} className="flex gap-4 bg-card border border-border rounded-xl p-4 group" data-testid={`cart-item-${item.courseId}`}>
+              <div
+                key={item.courseId}
+                className="flex gap-4 bg-card border border-border rounded-xl p-4 group"
+                data-testid={`cart-item-${item.courseId}`}
+              >
                 <img
                   src={item.imageUrl}
                   alt={item.title}
@@ -52,12 +101,18 @@ export default function CartPage() {
                       {item.title}
                     </h3>
                   </Link>
-                  <p className="text-xs text-muted-foreground mt-1">by {item.instructor}</p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    by {item.instructor}
+                  </p>
                   <div className="flex items-center justify-between mt-3">
                     <div className="flex items-baseline gap-2">
-                      <span className="text-lg font-bold text-foreground">{formatINR(item.price)}</span>
+                      <span className="text-lg font-bold text-foreground">
+                        {formatINR(item.price)}
+                      </span>
                       {item.originalPrice && (
-                        <span className="text-sm text-muted-foreground line-through">{formatINR(item.originalPrice)}</span>
+                        <span className="text-sm text-muted-foreground line-through">
+                          {formatINR(item.originalPrice)}
+                        </span>
                       )}
                     </div>
                     <button
@@ -79,27 +134,40 @@ export default function CartPage() {
               <h2 className="text-lg font-semibold mb-4">Order Summary</h2>
               <div className="space-y-2 mb-4">
                 {items.map((item) => (
-                  <div key={item.courseId} className="flex justify-between text-sm">
-                    <span className="text-muted-foreground line-clamp-1 flex-1 pr-4">{item.title}</span>
-                    <span className="font-medium shrink-0">{formatINR(item.price)}</span>
+                  <div
+                    key={item.courseId}
+                    className="flex justify-between text-sm"
+                  >
+                    <span className="text-muted-foreground line-clamp-1 flex-1 pr-4">
+                      {item.title}
+                    </span>
+                    <span className="font-medium shrink-0">
+                      {formatINR(item.price)}
+                    </span>
                   </div>
                 ))}
               </div>
               <Separator className="my-4" />
               <div className="flex justify-between items-center mb-6">
                 <span className="font-semibold text-lg">Total</span>
-                <span className="font-bold text-2xl text-foreground">{formatINR(total)}</span>
+                <span className="font-bold text-2xl text-foreground">
+                  {formatINR(total)}
+                </span>
               </div>
               <Button
                 className="w-full gap-2 h-12 text-base font-semibold"
-                onClick={() => setLocation("/checkout")}
+                onClick={() => paymentWithRazorPay()}
                 data-testid="button-checkout"
               >
                 Proceed to Checkout
                 <ArrowRight className="w-4 h-4" />
               </Button>
               <Link href="/courses">
-                <Button variant="ghost" className="w-full mt-2 text-muted-foreground" data-testid="link-continue-shopping">
+                <Button
+                  variant="ghost"
+                  className="w-full mt-2 text-muted-foreground"
+                  data-testid="link-continue-shopping"
+                >
                   Continue Shopping
                 </Button>
               </Link>
