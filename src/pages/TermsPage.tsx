@@ -102,7 +102,7 @@ Upon termination:
   },
   {
     title: "11. Governing Law",
-    content: "These Terms shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law provisions.\n\nAny disputes arising under or in connection with these Terms shall be subject to the exclusive jurisdiction of the courts located in Gurgaon, Haryana, India.",
+    content: "These Terms shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law provisions.\n\nAny disputes arising under or in connection with these Terms shall be subject to the exclusive jurisdiction of the courts located in Gujrat, India.",
   },
 ];
 
