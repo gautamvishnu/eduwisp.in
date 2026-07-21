@@ -97,7 +97,7 @@ export default function ContactPage() {
                     icon: MapPin,
                     label: "Address",
                     value:
-                      "603, Shreenath Signet 3, Near Khodiyar Temple, Nikol, Ahmedabad",
+                      "Flat No. 603, 6TH Floor No,  SHREENATH SIGNET-3, NIKOL ROAD, Nearby B/H KHODIYAR TEMPLE, Ahmedabad, Gujarat - 382350",
                     desc: "Visitors welcome by appointment",
                   },
                   {

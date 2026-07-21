@@ -44,7 +44,7 @@ export default function CareersPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
             {[
               { emoji: "🌍", title: "Remote-first", desc: "Work from anywhere. We measure output, not hours." },
-              { emoji: "📚", title: "Grow daily", desc: "Every employee gets a $2000/year learning stipend." },
+              { emoji: "📚", title: "Grow daily", desc: "Every employee gets a Rs.2000/year learning stipend." },
               { emoji: "🤝", title: "Inclusive culture", desc: "Diverse teams build better products. Everyone belongs here." },
             ].map((v) => (
               <div key={v.title} className="bg-card border border-border rounded-xl p-6">

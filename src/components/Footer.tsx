@@ -101,7 +101,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-background/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm">
-          <p>© {year} EduWisp. All rights reserved.</p>
+          <p>© {year} Cipherwisp Finsoft Technologies Private Limited. All rights reserved.</p>
           <div className="flex gap-4">
             <Link
               href="/privacy-policy"
