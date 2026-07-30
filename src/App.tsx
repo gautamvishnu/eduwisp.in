@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { CartProvider } from "@/context/CartContext";
+import { AuthProvider } from "@/context/AuthContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import NotFound from "@/pages/not-found";
@@ -21,6 +22,8 @@ import ContactPage from "@/pages/ContactPage";
 import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
 import TermsPage from "@/pages/TermsPage";
 import RefundPolicyPage from "@/pages/RefundPolicyPage";
+import LoginPage from "./pages/register/LoginPage";
+import RegisterPage from "./pages/login/RegisterPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -38,6 +41,8 @@ function Router() {
       <main className="flex-1">
         <Switch>
           <Route path="/" component={HomePage} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/register" component={RegisterPage} />
           <Route path="/courses" component={CoursesPage} />
           <Route path="/courses/:id" component={CourseDetailPage} />
           <Route path="/cart" component={CartPage} />
@@ -63,14 +68,16 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <CartProvider>
-        <TooltipProvider>
-          <WouterRouter>
-            <Router />
-          </WouterRouter>
-          <Toaster />
-        </TooltipProvider>
-      </CartProvider>
+      <AuthProvider>
+        <CartProvider>
+          <TooltipProvider>
+            <WouterRouter>
+              <Router />
+            </WouterRouter>
+            <Toaster />
+          </TooltipProvider>
+        </CartProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }
