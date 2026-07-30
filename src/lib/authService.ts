@@ -15,6 +15,19 @@ export interface AuthApiResponse<T = unknown> {
   data?: T;
 }
 
+export interface RegisterPayload {
+  firstName: string;
+  lastName: string;
+  mobile: string;
+  email: string;
+}
+
+export interface VerifyRegistrationPayload {
+  mobile: string;
+  otp: string;
+  password: string;
+}
+
 export class AuthService {
   /** Authenticate with usercode + password */
   static async login(
@@ -29,48 +42,34 @@ export class AuthService {
     return response.data;
   }
 
-  /** Send OTP SMS via your own gateway (used after Supabase registration) */
-  static async sendOtp(mobile: string): Promise<AuthApiResponse> {
-    const response = await axiosClient.post<AuthApiResponse>(
-      "/Account/CwEduSendOTP",
-      { mobile },
-    );
-
-    return response.data;
-  }
-
-  /** Verify OTP */
-  static async verifyOtp(
-    mobile: string,
-    otp: string,
-  ): Promise<AuthApiResponse<AuthUser>> {
-    const response = await axiosClient.post<AuthApiResponse<AuthUser>>(
-      "/Account/CwEduVerifyOTP",
-      { mobile, otp },
-    );
-
-    return response.data;
-  }
-
-  /** Resend OTP to the same mobile number */
-  static async resendOtp(mobile: string): Promise<AuthApiResponse> {
-    const response = await axiosClient.post<AuthApiResponse>(
-      "/Account/CwEduResendOTP",
-      { mobile },
-    );
-
-    return response.data;
-  }
-
+  /** Step 1 — register user details and trigger OTP */
   static async register(
-    name: string,
-    mobile: string,
-    email: string,
-    password: string,
-  ): Promise<AuthApiResponse<AuthUser>> {
-    const response = await axiosClient.post<AuthApiResponse<AuthUser>>(
-      "/Account/Register",
-      { name, mobile, email, password },
+    payload: RegisterPayload,
+  ): Promise<AuthApiResponse> {
+    const response = await axiosClient.post<AuthApiResponse>(
+      "/Account/register",
+      payload,
+    );
+
+    return response.data;
+  }
+
+  /** Step 2 — verify OTP and set password */
+  static async verifyRegistration(
+    payload: VerifyRegistrationPayload,
+  ): Promise<AuthApiResponse> {
+    const response = await axiosClient.post<AuthApiResponse>(
+      "/Account/verifyregistration",
+      payload,
+    );
+
+    return response.data;
+  }
+
+  /** Resend registration OTP */
+  static async sendRegisterOtp(mobile: string): Promise<AuthApiResponse> {
+    const response = await axiosClient.post<AuthApiResponse>(
+      `/Account/sendregisterotp/${mobile}`,
     );
 
     return response.data;

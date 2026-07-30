@@ -34,38 +34,48 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/context/AuthContext";
 import { AuthService } from "@/lib/authService";
-import { registerWithSupabase } from "@/lib/supabase";
 
-const registerSchema = z.object({
-  name: z
+const detailsSchema = z.object({
+  firstName: z
     .string()
     .trim()
-    .min(2, "Name must be at least 2 characters")
-    .max(80, "Name is too long"),
-  email: z.string().trim().email("Enter a valid email address"),
+    .min(2, "First name must be at least 2 characters")
+    .max(50, "First name is too long"),
+  lastName: z
+    .string()
+    .trim()
+    .min(2, "Last name must be at least 2 characters")
+    .max(50, "Last name is too long"),
   mobile: z
     .string()
     .trim()
     .regex(/^[6-9]\d{9}$/, "Enter a valid 10-digit Indian mobile number"),
-  password: z
-    .string()
-    .min(6, "Password must be at least 6 characters")
-    .max(64, "Password is too long"),
+  email: z.string().trim().email("Enter a valid email address"),
 });
 
-const otpSchema = z.object({
-  otp: z
-    .string()
-    .length(6, "Enter the 6-digit OTP")
-    .regex(/^\d{6}$/, "OTP must be 6 digits"),
-});
+const verifySchema = z
+  .object({
+    otp: z
+      .string()
+      .length(6, "Enter the 6-digit OTP")
+      .regex(/^\d{6}$/, "OTP must be 6 digits"),
+    password: z
+      .string()
+      .min(6, "Password must be at least 6 characters")
+      .max(64, "Password is too long"),
+    confirmPassword: z.string().min(1, "Confirm your password"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
 
-type RegisterForm = z.infer<typeof registerSchema>;
-type OtpForm = z.infer<typeof otpSchema>;
+type DetailsForm = z.infer<typeof detailsSchema>;
+type VerifyForm = z.infer<typeof verifySchema>;
 
-type Step = "details" | "otp";
+type Step = "details" | "verify";
 
-const RESEND_SECONDS = 30;
+const RESEND_SECONDS = 60;
 
 function getErrorMessage(err: unknown, fallback: string) {
   if (isAxiosError(err)) {
@@ -80,28 +90,24 @@ function getErrorMessage(err: unknown, fallback: string) {
 
 export default function RegisterPage() {
   const [, setLocation] = useLocation();
-  const { login, isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth();
   const { toast } = useToast();
 
   const [step, setStep] = useState<Step>("details");
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [resendIn, setResendIn] = useState(0);
-  const [pending, setPending] = useState<{
-    name: string;
-    email: string;
-    mobile: string;
-    supabaseUserId?: string;
-  } | null>(null);
+  const [pendingMobile, setPendingMobile] = useState("");
 
-  const registerForm = useForm<RegisterForm>({
-    resolver: zodResolver(registerSchema),
-    defaultValues: { name: "", email: "", mobile: "", password: "" },
+  const detailsForm = useForm<DetailsForm>({
+    resolver: zodResolver(detailsSchema),
+    defaultValues: { firstName: "", lastName: "", mobile: "", email: "" },
   });
 
-  const otpForm = useForm<OtpForm>({
-    resolver: zodResolver(otpSchema),
-    defaultValues: { otp: "" },
+  const verifyForm = useForm<VerifyForm>({
+    resolver: zodResolver(verifySchema),
+    defaultValues: { otp: "", password: "", confirmPassword: "" },
   });
 
   useEffect(() => {
@@ -116,77 +122,40 @@ export default function RegisterPage() {
 
   const startResendTimer = () => setResendIn(RESEND_SECONDS);
 
-  const onRegisterSubmit = async (data: RegisterForm) => {
+  const onDetailsSubmit = async (data: DetailsForm) => {
     setIsSubmitting(true);
     try {
-      const result = await registerWithSupabase({
-        name: data.name,
-        email: data.email,
+      const response = await AuthService.register({
+        firstName: data.firstName,
+        lastName: data.lastName,
         mobile: data.mobile,
-        password: data.password,
+        email: data.email,
       });
 
-      if (!result.user) {
+      if (!response.status) {
         toast({
           title: "Registration failed",
-          description: "Could not create your account. Please try again.",
+          description:
+            response.message || "Could not start registration. Try again.",
           variant: "destructive",
         });
         return;
       }
 
-      // Identities empty usually means the email is already registered
-      if (result.user.identities && result.user.identities.length === 0) {
-        toast({
-          title: "Account exists",
-          description: "This email is already registered. Please sign in.",
-          variant: "destructive",
-        });
-        return;
-      }
-
-      setPending({
-        name: data.name,
-        email: data.email,
-        mobile: data.mobile,
-        supabaseUserId: result.user.id,
-      });
-      otpForm.reset({ otp: "" });
-      setStep("otp");
+      setPendingMobile(data.mobile);
+      verifyForm.reset({ otp: "", password: "", confirmPassword: "" });
+      setStep("verify");
       startResendTimer();
-
-      try {
-        const otpResponse = await AuthService.sendOtp(data.mobile);
-        if (!otpResponse.status) {
-          toast({
-            title: "Account created, OTP failed",
-            description:
-              otpResponse.message ||
-              "We created your account but could not send the OTP. Try resending.",
-            variant: "destructive",
-          });
-        } else {
-          toast({
-            title: "OTP sent",
-            description: `We've sent a 6-digit code to +91 ${data.mobile}.`,
-          });
-        }
-      } catch (otpErr) {
-        toast({
-          title: "Account created, OTP failed",
-          description: getErrorMessage(
-            otpErr,
-            "We created your account but could not send the OTP. Try resending.",
-          ),
-          variant: "destructive",
-        });
-      }
+      toast({
+        title: "OTP sent",
+        description: `We've sent a 6-digit code to +91 ${data.mobile}.`,
+      });
     } catch (err) {
       toast({
         title: "Registration failed",
         description: getErrorMessage(
           err,
-          "Could not create your account. Please try again.",
+          "Could not start registration. Please try again.",
         ),
         variant: "destructive",
       });
@@ -195,41 +164,36 @@ export default function RegisterPage() {
     }
   };
 
-  const onOtpSubmit = async (data: OtpForm) => {
-    if (!pending) return;
+  const onVerifySubmit = async (data: VerifyForm) => {
     setIsSubmitting(true);
     try {
-      const response = await AuthService.verifyOtp(pending.mobile, data.otp);
+      const response = await AuthService.verifyRegistration({
+        mobile: pendingMobile,
+        otp: data.otp,
+        password: data.password,
+      });
 
       if (!response.status) {
         toast({
           title: "Verification failed",
-          description: response.message || "Invalid or expired OTP.",
+          description:
+            response.message || "Invalid OTP or could not set password.",
           variant: "destructive",
         });
         return;
       }
 
-      login({
-        id: pending.supabaseUserId ?? response.data?.id,
-        name: pending.name,
-        email: pending.email,
-        mobile: pending.mobile,
-        token: response.data?.token,
-        ...response.data,
-      });
-
       toast({
-        title: "Welcome to EduWisp!",
-        description: "Your account is ready. Let's start learning.",
+        title: "Account created!",
+        description: "Please sign in with your mobile number and password.",
       });
-      setLocation("/");
+      setLocation("/login");
     } catch (err) {
       toast({
         title: "Verification failed",
         description: getErrorMessage(
           err,
-          "Could not verify OTP. Please try again.",
+          "Could not complete registration. Please try again.",
         ),
         variant: "destructive",
       });
@@ -239,10 +203,10 @@ export default function RegisterPage() {
   };
 
   const handleResend = async () => {
-    if (resendIn > 0 || !pending) return;
+    if (resendIn > 0 || !pendingMobile) return;
     setIsSubmitting(true);
     try {
-      const response = await AuthService.resendOtp(pending.mobile);
+      const response = await AuthService.sendRegisterOtp(pendingMobile);
       if (!response.status) {
         toast({
           title: "Could not resend OTP",
@@ -252,10 +216,10 @@ export default function RegisterPage() {
         return;
       }
       startResendTimer();
-      otpForm.reset({ otp: "" });
+      verifyForm.setValue("otp", "");
       toast({
         title: "OTP resent",
-        description: `A new code was sent to +91 ${pending.mobile}.`,
+        description: `A new code was sent to +91 ${pendingMobile}.`,
       });
     } catch (err) {
       toast({
@@ -270,7 +234,7 @@ export default function RegisterPage() {
 
   const goBackToDetails = () => {
     setStep("details");
-    otpForm.reset({ otp: "" });
+    verifyForm.reset({ otp: "", password: "", confirmPassword: "" });
   };
 
   return (
@@ -297,33 +261,18 @@ export default function RegisterPage() {
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
           className="mb-8 text-center"
         >
-          <Link href="/" className="mb-6 inline-flex items-center gap-2.5">
-            <img
-              src="/logo.png"
-              alt="EduWisp"
-              className="h-11 w-11 rounded-lg object-cover"
-            />
-            <span
-              className="text-2xl font-bold text-primary"
-              style={{
-                fontFamily: "var(--app-font-display, var(--app-font-sans))",
-              }}
-            >
-              EduWisp
-            </span>
-          </Link>
           <h1
             className="mt-4 text-3xl font-bold tracking-tight text-foreground"
             style={{
               fontFamily: "var(--app-font-display, var(--app-font-sans))",
             }}
           >
-            {step === "details" ? "Create your account" : "Verify mobile"}
+            {step === "details" ? "Create your account" : "Verify & set password"}
           </h1>
           <p className="mt-2 text-sm text-muted-foreground">
             {step === "details"
               ? "Join EduWisp and start learning today."
-              : `Enter the 6-digit code sent to +91 ${pending?.mobile ?? ""}.`}
+              : `Enter the OTP sent to +91 ${pendingMobile} and set your password.`}
           </p>
         </motion.div>
 
@@ -342,61 +291,58 @@ export default function RegisterPage() {
                 exit={{ opacity: 0, x: 12 }}
                 transition={{ duration: 0.25 }}
               >
-                <Form {...registerForm}>
+                <Form {...detailsForm}>
                   <form
-                    onSubmit={registerForm.handleSubmit(onRegisterSubmit)}
+                    onSubmit={detailsForm.handleSubmit(onDetailsSubmit)}
                     className="space-y-4"
                     noValidate
                   >
-                    <FormField
-                      control={registerForm.control}
-                      name="name"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Full name</FormLabel>
-                          <FormControl>
-                            <div className="relative">
-                              <User className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                      <FormField
+                        control={detailsForm.control}
+                        name="firstName"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>First name</FormLabel>
+                            <FormControl>
+                              <div className="relative">
+                                <User className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                                <Input
+                                  autoComplete="given-name"
+                                  placeholder="First name"
+                                  className="pl-10"
+                                  data-testid="input-first-name"
+                                  {...field}
+                                />
+                              </div>
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={detailsForm.control}
+                        name="lastName"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Last name</FormLabel>
+                            <FormControl>
                               <Input
-                                autoComplete="name"
-                                placeholder="Your full name"
-                                className="pl-10"
-                                data-testid="input-name"
+                                autoComplete="family-name"
+                                placeholder="Last name"
+                                data-testid="input-last-name"
                                 {...field}
                               />
-                            </div>
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
 
                     <FormField
-                      control={registerForm.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Email</FormLabel>
-                          <FormControl>
-                            <div className="relative">
-                              <Mail className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                              <Input
-                                type="email"
-                                autoComplete="email"
-                                placeholder="you@example.com"
-                                className="pl-10"
-                                data-testid="input-email"
-                                {...field}
-                              />
-                            </div>
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={registerForm.control}
+                      control={detailsForm.control}
                       name="mobile"
                       render={({ field }) => (
                         <FormItem>
@@ -431,39 +377,22 @@ export default function RegisterPage() {
                     />
 
                     <FormField
-                      control={registerForm.control}
-                      name="password"
+                      control={detailsForm.control}
+                      name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Password</FormLabel>
+                          <FormLabel>Email</FormLabel>
                           <FormControl>
                             <div className="relative">
-                              <Lock className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                              <Mail className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                               <Input
-                                type={showPassword ? "text" : "password"}
-                                autoComplete="new-password"
-                                placeholder="Create a password"
-                                className="pl-10 pr-10"
-                                data-testid="input-password"
+                                type="email"
+                                autoComplete="email"
+                                placeholder="you@example.com"
+                                className="pl-10"
+                                data-testid="input-email"
                                 {...field}
                               />
-                              <button
-                                type="button"
-                                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                                onClick={() => setShowPassword((v) => !v)}
-                                aria-label={
-                                  showPassword
-                                    ? "Hide password"
-                                    : "Show password"
-                                }
-                                data-testid="toggle-password"
-                              >
-                                {showPassword ? (
-                                  <EyeOff className="h-4 w-4" />
-                                ) : (
-                                  <Eye className="h-4 w-4" />
-                                )}
-                              </button>
                             </div>
                           </FormControl>
                           <FormMessage />
@@ -481,7 +410,7 @@ export default function RegisterPage() {
                       {isSubmitting ? (
                         <>
                           <Loader2 className="h-4 w-4 animate-spin" />
-                          Creating account…
+                          Registering…
                         </>
                       ) : (
                         "Register"
@@ -492,7 +421,7 @@ export default function RegisterPage() {
               </motion.div>
             ) : (
               <motion.div
-                key="otp"
+                key="verify"
                 initial={{ opacity: 0, x: 12 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -12 }}
@@ -513,18 +442,18 @@ export default function RegisterPage() {
                     <ShieldCheck className="h-4 w-4 text-primary" />
                   </div>
                   <p className="text-sm text-muted-foreground">
-                    Confirm your mobile number with the OTP we sent via SMS.
+                    Confirm your mobile with the OTP, then create your password.
                   </p>
                 </div>
 
-                <Form {...otpForm}>
+                <Form {...verifyForm}>
                   <form
-                    onSubmit={otpForm.handleSubmit(onOtpSubmit)}
-                    className="space-y-6"
+                    onSubmit={verifyForm.handleSubmit(onVerifySubmit)}
+                    className="space-y-4"
                     noValidate
                   >
                     <FormField
-                      control={otpForm.control}
+                      control={verifyForm.control}
                       name="otp"
                       render={({ field }) => (
                         <FormItem>
@@ -553,22 +482,102 @@ export default function RegisterPage() {
                       )}
                     />
 
+                    <FormField
+                      control={verifyForm.control}
+                      name="password"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Password</FormLabel>
+                          <FormControl>
+                            <div className="relative">
+                              <Lock className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                              <Input
+                                type={showPassword ? "text" : "password"}
+                                autoComplete="new-password"
+                                placeholder="Create a password"
+                                className="pl-10 pr-10"
+                                data-testid="input-password"
+                                {...field}
+                              />
+                              <button
+                                type="button"
+                                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                                onClick={() => setShowPassword((v) => !v)}
+                                aria-label={
+                                  showPassword
+                                    ? "Hide password"
+                                    : "Show password"
+                                }
+                              >
+                                {showPassword ? (
+                                  <EyeOff className="h-4 w-4" />
+                                ) : (
+                                  <Eye className="h-4 w-4" />
+                                )}
+                              </button>
+                            </div>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={verifyForm.control}
+                      name="confirmPassword"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Confirm password</FormLabel>
+                          <FormControl>
+                            <div className="relative">
+                              <Lock className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                              <Input
+                                type={showConfirmPassword ? "text" : "password"}
+                                autoComplete="new-password"
+                                placeholder="Confirm your password"
+                                className="pl-10 pr-10"
+                                data-testid="input-confirm-password"
+                                {...field}
+                              />
+                              <button
+                                type="button"
+                                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                                onClick={() =>
+                                  setShowConfirmPassword((v) => !v)
+                                }
+                                aria-label={
+                                  showConfirmPassword
+                                    ? "Hide confirm password"
+                                    : "Show confirm password"
+                                }
+                              >
+                                {showConfirmPassword ? (
+                                  <EyeOff className="h-4 w-4" />
+                                ) : (
+                                  <Eye className="h-4 w-4" />
+                                )}
+                              </button>
+                            </div>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
                     <Button
                       type="submit"
                       className="w-full"
                       size="lg"
-                      disabled={
-                        isSubmitting || otpForm.watch("otp")?.length !== 6
-                      }
-                      data-testid="button-verify-otp"
+                      disabled={isSubmitting}
+                      data-testid="button-verify-register"
                     >
                       {isSubmitting ? (
                         <>
                           <Loader2 className="h-4 w-4 animate-spin" />
-                          Verifying…
+                          Submitting…
                         </>
                       ) : (
-                        "Verify & continue"
+                        "Submit"
                       )}
                     </Button>
                   </form>
