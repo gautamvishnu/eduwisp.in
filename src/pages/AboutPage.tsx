@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { Target, Heart, Globe, Award, Users, BookOpen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { BRAND_NAME, COMPANY_LEGAL_NAME } from "@/lib/company";
 
 const team = [
   { name: "Rachel Kim", role: "CEO & Co-founder", bio: "Former Head of Education at Khan Academy. Passionate about accessible learning.", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200" },
@@ -29,8 +30,12 @@ export default function AboutPage() {
             <span className="text-primary block">investment you can make</span>
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
-            EduWisp was founded in 2020 by two engineers who believed that world-class education 
+            {BRAND_NAME} was founded in 2020 by two engineers who believed that world-class education 
             should be available to anyone, anywhere — not just people lucky enough to afford elite universities.
+          </p>
+          <p className="mt-4 text-sm text-muted-foreground">
+            {BRAND_NAME} is operated by{" "}
+            <span className="font-medium text-foreground">{COMPANY_LEGAL_NAME}</span>.
           </p>
         </div>
       </div>
@@ -49,11 +54,11 @@ export default function AboutPage() {
               We saw learners finishing 30-hour courses and still feeling lost when it came to real work.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              So we built EduWisp differently. Every course is built around a project-first philosophy: 
+              So we built {BRAND_NAME} differently. Every course is built around a project-first philosophy: 
               you learn by building things that matter, guided by instructors who actually work in the field.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              Today, 48,000+ learners in 120+ countries have used EduWisp to change careers, 
+              Today, 48,000+ learners in 120+ countries have used {BRAND_NAME} to change careers, 
               get promoted, and build businesses. We're just getting started.
             </p>
           </div>
@@ -124,7 +129,7 @@ export default function AboutPage() {
         <div className="max-w-xl mx-auto px-4">
           <h2 className="text-3xl font-bold mb-4">Join our mission</h2>
           <p className="text-primary-foreground/80 mb-8">
-            Whether you're here to learn or to teach, there's a place for you at EduWisp.
+            Whether you're here to learn or to teach, there's a place for you at {BRAND_NAME}.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/courses">
