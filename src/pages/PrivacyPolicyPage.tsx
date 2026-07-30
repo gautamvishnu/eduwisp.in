@@ -1,4 +1,5 @@
 import { Shield } from "lucide-react";
+import { BRAND_NAME, COMPANY_LEGAL_NAME } from "@/lib/company";
 
 const sections = [
   {
@@ -55,7 +56,7 @@ const sections = [
     content: [
       {
         subtitle: "",
-        text: "We implement appropriate technical and organizational measures to protect your personal information from unauthorized access, disclosure, alteration, or destruction. However, no method of transmission over the internet or electronic storage is 100% secure, and we cannot guarantee absolute security.\n\nWe take the following steps to protect your data:\n\n• Using encryption for sensitive information.\n• Implementing access controls and authentication procedures.\n• Regularly reviewing and updating our security practices.\n• Training our staff on data protection and privacy.",
+        text: "We implement appropriate technical and organizational measures to protect your personal information from unauthorized access, disclosure, alteration, or destruction. However, no method of transmission over the internet or electronic storage is 100% secure, and we cannot guarantee absolute security.\n\nWe take the following steps to protect our data:\n\n• Using encryption for sensitive information.\n• Implementing access controls and authentication procedures.\n• Regularly reviewing and updating our security practices.\n• Training our staff on data protection and privacy.",
       },
     ],
   },
@@ -119,10 +120,14 @@ export default function PrivacyPolicyPage() {
           Last updated: 1 January 2026 &nbsp;·&nbsp; Effective: 1 January 2026
         </p>
         <p className="mt-4 text-muted-foreground leading-relaxed">
-          At EduWisp, we are committed to protecting your privacy and ensuring the security of your
-          personal information. This Privacy Policy explains how we collect, use, disclose, and
+          At {BRAND_NAME}, we are committed to protecting your privacy and ensuring the security of
+          your personal information. This Privacy Policy explains how we collect, use, disclose, and
           safeguard your information when you visit our website or use our services. Please read this
           policy carefully to understand our practices regarding your personal data.
+        </p>
+        <p className="mt-4 text-sm text-muted-foreground">
+          {BRAND_NAME} is operated by{" "}
+          <span className="font-medium text-foreground">{COMPANY_LEGAL_NAME}</span>.
         </p>
       </div>
 
